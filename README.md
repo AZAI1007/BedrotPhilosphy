@@ -14,4 +14,4 @@ your fault. Blame capitalism. Blame Mercury retrograde. Blame your WiFi provider
 ```bash
    pip install flask google-genai python-dotenv
 ```
-3. Create a `.env` file in the root folder:
+3. Create a `.env` file in the root folder and add your gemini api key there
