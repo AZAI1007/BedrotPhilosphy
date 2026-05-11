@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bed Rot Justifier</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            color: #eee;
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #e94560;
+        }
+
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            background: #16213e;
+            border: 1px solid #e94560;
+            border-radius: 10px;
+            color: #eee;
+            font-size: 1rem;
+            padding: 15px;
+            resize: none;
+            outline: none;
+            font-family: 'Georgia', serif;
+        }
+
+        textarea::placeholder {
+            color: #555;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: #e94560;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #c73652;
+        }
+
+        button:disabled {
+            background: #555;
+            cursor: not-allowed;
+        }
+
+        .result-box {
+            margin-top: 40px;
+            background: #16213e;
+            border-left: 4px solid #e94560;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: left;
+            display: none;
+        }
+
+        .result-label {
+            font-size: 0.8rem;
+            color: #e94560;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .result-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        .loading {
+            color: #aaa;
+            font-style: italic;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bed Rot Justifier</h1>
+        <p class="subtitle">Tell us what you did today. We'll make it sound genius.</p>
+
+        <textarea 
+            id="activityInput" 
+            placeholder="e.g. I watched TikTok for 6 hours and ate instant noodles twice...">
+        </textarea>
+
+        <br>
+        <button id="justifyBtn" onclick="justify()">Justify My Day</button>
+
+        <p class="loading" id="loading">The philosopher is thinking deeply...</p>
+
+        <div class="result-box" id="resultBox">
+            <div class="result-label">Your Philosophical Justification</div>
+            <div class="result-text" id="resultText"></div>
+        </div>
+    </div>
+
+    <script>
+        async function justify() {
+            const input = document.getElementById("activityInput").value.trim();
+
+            if (!input) {
+                alert("Tell us what you did first!");
+                return;
+            }
+
+            // Show loading, hide result
+            document.getElementById("justifyBtn").disabled = true;
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("resultBox").style.display = "none";
+
+            try {
+                const response = await fetch("/justify", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ activity: input })
+                });
+
+                const data = await response.json();
+
+                // Show result
+                document.getElementById("resultText").innerText = data.justification;
+                document.getElementById("resultBox").style.display = "block";
+
+            } catch (error) {
+                alert("Something went wrong. The philosopher has left the building.");
+            } finally {
+                document.getElementById("justifyBtn").disabled = false;
+                document.getElementById("loading").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
