@@ -1,4 +1,4 @@
-#Bed Rot Justifier
+##**Bed Rot Justifier**
 
 Had a completely unproductive day? Good. You deserve it. And we'll prove it.
 
