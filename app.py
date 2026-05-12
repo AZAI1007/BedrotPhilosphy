@@ -1,3 +1,5 @@
+#to run locally: python app.py
+
 from flask import Flask, render_template, request, jsonify
 from google import genai
 from dotenv import load_dotenv
