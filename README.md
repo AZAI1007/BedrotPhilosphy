@@ -7,4 +7,4 @@ generates a completely serious, totally valid justification for why none of it w
 your fault. Blame capitalism. Blame Mercury retrograde. Blame your WiFi provider because it's never your fault for just taking a break (even if it means procrastinating on that long assignment that you shouldve completed by now...)
 
 
-Link of the website: https://bedrotphilosophy.pythonanywhere.com/
+Website Link: https://bedrotphilosophy.pythonanywhere.com/
