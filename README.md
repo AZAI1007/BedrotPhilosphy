@@ -7,11 +7,4 @@ generates a completely serious, totally valid justification for why none of it w
 your fault. Blame capitalism. Blame Mercury retrograde. Blame your WiFi provider because it's never your fault for just taking a break (even if it means procrastinating on that long assignment that you shouldve completed by now...)
 
 
-## How to Run
-
-1. Clone this repo
-2. Install dependencies:
-```bash
-   pip install flask google-genai python-dotenv
-```
-3. Create a `.env` file in the root folder and add your gemini api key there
+Link of the website: https://bedrotphilosophy.pythonanywhere.com/
